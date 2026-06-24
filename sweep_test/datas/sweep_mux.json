@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "sweep": {
+      "param": "mux",
+      "values": [
+        4
+      ],
+      "num_points": 1
+    },
+    "base": {
+      "n": 1024,
+      "k": 1024,
+      "keep": 0.2,
+      "s": 64,
+      "b": 256,
+      "mux": 8,
+      "conflict": 0.25
+    },
+    "flags": {
+      "fix_nm": false,
+      "nm_round": "round"
+    },
+    "random": {
+      "seed": 0,
+      "dist": "normal"
+    },
+    "fairness": {
+      "protocol": "none",
+      "note": "No NNZ matching; all methods evaluated on the same pruned input."
+    },
+    "pad_value": -1
+  },
+  "points": [
+    {
+      "sweep_value": 4,
+      "shape": [
+        1024,
+        1024
+      ],
+      "params": {
+        "n": 1024,
+        "k": 1024,
+        "nm": 1048576,
+        "keep": 0.2,
+        "s": 64,
+        "b": 256,
+        "mux": 4,
+        "conflict": 0.25
+      },
+      "raw": {
+        "nnz": 209715,
+        "density": 0.19999980926513672
+      },
+      "result": {
+        "protocol": {
+          "fairness_match_to_cc_lossy": false,
+          "nnz_base": 209715,
+          "nnz_cc_lossy": 154689,
+          "nnz_work": 209715,
+          "nnz_drop_needed_for_match": 0,
+          "extra_drop_ratio_cc_lossy": 0.26238466490236745
+        },
+        "general": {
+          "tile_cols": 16384,
+          "density": 0.19999980926513672,
+          "nnz": 209715
+        },
+        "column_combine": {
+          "tile_cols": 4096,
+          "density": 0.5900917053222656,
+          "nnz": 154689
+        },
+        "eureka": {
+          "tile_cols": 8158,
+          "density": 0.40166669220397155,
+          "nnz": 209715
+        },
+        "ctp": {
+          "tile_cols": 4468,
+          "density": 0.7333923175917636,
+          "nnz": 209715
+        }
+      }
+    }
+  ]
+}
