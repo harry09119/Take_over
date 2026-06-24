@@ -1,44 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-sa_simul_new.py
-
-OS-SA( Output-Stationary Systolic Array )의 "타일 시퀀스 실행 시간"을
-가벼운 이벤트 기반으로 근사(simulate)하는 코드입니다.
-
-특징
-- injection 포트(타일 주입)는 1개라고 가정: 타일은 순차적으로 주입됨
-- output register group(=누산 컨텍스트) 점유시간:  T_occ = k + 2*S_col - 1
-  (k=해당 타일의 유효 주입 길이; packed group 수 G_i 또는 K_tile 등)
-- output register group 수:
-    buffer_mode="double"    -> 2개 (baseline OS-SA)
-    buffer_mode="quadratic" -> 4개 (OPE에서의 (2 tail) x (2 epoch) 근사)
-- DRAM->(filter/ifmap) prefetch는 "입력 버퍼 2개"를 가정:
-  (1) 다음 타일 weight는 한 타일 ahead로만 prefetch
-  (2) activation slice(ifmap)는 한 slice ahead로만 prefetch
-  (3) DRAM 대역폭은 weights/ifmap이 공유하며, 우선순위는
-      "다음 타일 weight" > "다음 slice ifmap" 으로 둠 (보수적)
-
-태그(tag) DRAM 읽기 모델
-- tag_bits_per_entry > 0 이면,
-  weight 엔트리(=S_row*k)의 엔트리당 tag 비트만큼을 추가 바이트로 계산합니다.
-  (epoch/reg bit는 하드웨어 스케줄이 주는 값이라고 보고,
-   보통 CTC/CTF는 stream bit 1개면 충분하므로 tag_bits_per_entry=1을 권장)
-
-중요 파라미터
-- tile_lengths: 타일별 주입 길이 리스트 (예: G_i 또는 K_tile)
-- activation_reuse_tiles:
-    같은 activation slice(=같은 K_tile 구간 & 같은 output-column 구간)를
-    연속으로 몇 개 타일이 공유하는지.
-    * main_new_mp.py의 루프가 (mi in K-segment) 바깥, (ni in row-tiles) 안쪽이면
-      보통 activation_reuse_tiles = gn_tiles 입니다.
-    * 값을 주지 않으면 기본 1(=타일마다 ifmap 로딩)으로 동작합니다.
-- repeat_period_tiles:
-    tile_lengths가 "M-타일 반복"처럼 동일 시퀀스를 여러 번 반복한 경우,
-    activation slice는 M-타일이 바뀔 때마다 다시 로딩되어야 합니다.
-    sa_profile.py에서 base_tile_lengths를 m_tiles만큼 곱해 만든다면,
-    repeat_period_tiles=len(base_tile_lengths)를 넣는 것을 권장합니다.
-"""
 
 from __future__ import annotations
 

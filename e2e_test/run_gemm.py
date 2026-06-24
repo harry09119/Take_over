@@ -1,16 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-sa_profile
-
-weight를 packing해 생성된 result_*.json을 입력으로 받아,
-sa_simul로 GEMM layer의 total_cycles를 측정.
-
-(resnet50,mobilenet_v2,vgg16,inception_v3,bert 지원)
-
-"""
-
 import argparse
 import json
 from math import ceil
@@ -19,7 +9,7 @@ from typing import Dict, Any, List, Tuple, Optional
 import torch
 import torch.nn as nn
 
-from sa_simul import simulate_os_sa_full
+from lib_sa import simulate_os_sa_full
 from torchvision import models
 from torchvision.models import MobileNet_V2_Weights, VGG16_Weights, Inception_V3_Weights
 

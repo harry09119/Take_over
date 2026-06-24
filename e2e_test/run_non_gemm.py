@@ -1,34 +1,4 @@
 #!/usr/bin/env python3
-"""
-run_non_gemm.py
-
-Purpose
-- Measure full CPU end-to-end latency with torch.utils.benchmark.
-- Use torch.profiler(record_shapes=True) to extract operator categories and input shapes.
-- Treat Conv/Linear/MatMul/BMM operators as GEMM/SA-side operations.
-- Estimate hybrid non-GEMM latency: vector/post-processing-unit estimate for supported ops and CPU-estimated fallback for unsupported ops.
-- No SA/vector overlap is modeled.
-- Softmax, LayerNorm, Embedding_Indexing, Mixed_FusedAttention, and unknown Other_NonGEMM are kept as CPU-estimated latency by default. Tensor_Movement is split into metadata-only layout ops, which are zero-cost, and actual-copy ops, which are modeled as memory movement.
-- BERT uses eager attention by default to avoid fused scaled_dot_product_attention when the installed Transformers version supports it.
-
-Key outputs
-- nongemm_cpu_ms_est:
-    CPU-estimated non-GEMM latency = benchmark total latency × profiler non-GEMM self-time fraction.
-- nongemm_vector_ms_shape_est:
-    Hybrid non-GEMM estimate for E2E: shape-based vector/post-processing estimate for supported non-GEMM ops, plus CPU-estimated fallback for Softmax/LayerNorm/Embedding_Indexing/Mixed_FusedAttention/unknown Other_NonGEMM and layout-aware handling for Tensor_Movement.
-- *.ops.csv:
-    Per-op breakdown.
-- *.coarse_summary.csv:
-    GEMM vs NonGEMM summary.
-- *.detail_summary.csv:
-    Detail-category summary.
-
-Important assumptions
-- Depthwise convolution is also assumed to be processed by the SA; therefore all convolution-like ops are GEMM/SA-side.
-- Softmax, LayerNorm, and Embedding_Indexing are not accelerated by the vector unit by default. Tensor_Movement is handled layout-aware: metadata-only ops are removed, while copy/cat/contiguous-like ops are modeled as data movement.
-- BERT attention is forced to eager mode by default when supported, so self-attention is exposed as ordinary attention ops rather than fused SDPA.
-- This is not a cycle-accurate vector-unit simulator. It is a shape-aware analytical estimate.
-"""
 
 import os
 import csv
