@@ -1,0 +1,17 @@
+{
+  "order": [
+    0,
+    1,
+    2,
+    3,
+    6,
+    5,
+    7,
+    4
+  ],
+  "exact_certified": false,
+  "hard_timeout": false,
+  "worker_wall_seconds": 0.624189980000665,
+  "error": "Traceback (most recent call last):\n  File \"/home/harry09119/hand_over/optimal_test/test/exact_order_worker_8tiles.py\", line 48, in <module>\n    if __name__=='__main__': main()\n                             ^^^^^^\n  File \"/home/harry09119/hand_over/optimal_test/test/exact_order_worker_8tiles.py\", line 30, in main\n    import torch\n  File \"/home/harry09119/env/lib/python3.12/site-packages/torch/__init__.py\", line 416, in <module>\n    from torch._C import *  # noqa: F403\n    ^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 463, in _lock_unlock_module\nKeyboardInterrupt\n",
+  "returncode": -2
+}

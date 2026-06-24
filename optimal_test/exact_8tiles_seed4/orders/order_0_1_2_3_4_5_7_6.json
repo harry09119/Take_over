@@ -1,0 +1,17 @@
+{
+  "order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    6
+  ],
+  "exact_certified": false,
+  "hard_timeout": false,
+  "worker_wall_seconds": 56.784015818000626,
+  "error": "Traceback (most recent call last):\n  File \"/home/harry09119/hand_over/optimal_test/test/exact_order_worker_8tiles.py\", line 48, in <module>\n    if __name__=='__main__': main()\n                             ^^^^^^\n  File \"/home/harry09119/hand_over/optimal_test/test/exact_order_worker_8tiles.py\", line 42, in main\n    result=evaluate_exact_pairing_sequence(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/harry09119/hand_over/optimal_test/test/run_ctf_greedy_pairing_benchmarks.py\", line 198, in evaluate_exact_pairing_sequence\n    tr = exact_func(\n         ^^^^^^^^^^^\n  File \"/home/harry09119/hand_over/optimal_test/test/ctf_row_pairing_exact_oracle_memo.py\", line 105, in exact_row_pairing_transition\n    move = exact_fixed_row_ctf(now_packed, group_sources, aligned_next, pad_value=pad_value)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/harry09119/hand_over/optimal_test/test/ctf_optimality_oracle_dp_lb.py\", line 171, in exact_fixed_row_ctf\n    left_nodes, right_nodes, edges = enumerate_move_edges(now_packed, group_sources, next_tile, pad_value=pad_value)\n                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/harry09119/hand_over/optimal_test/test/ctf_optimality_oracle_dp_lb.py\", line 79, in enumerate_move_edges\n    if int(next_tile[r, c].item()) != pad_value:\n           ^^^^^^^^^^^^^^^^^^^^^^\nKeyboardInterrupt\n",
+  "returncode": -2
+}

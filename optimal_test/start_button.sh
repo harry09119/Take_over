@@ -6,7 +6,7 @@ python compare_greedy_vs_exhaustive_local_exact_8tiles.py \
   --base-oracle ctf_optimality_oracle_dp_lb.py \
   --row-exact ctf_row_pairing_exact_oracle_memo.py \
   --worker-script exact_order_worker_8tiles.py \
-  --seed 10 \
+  --seed 4 \
   --density 0.20 \
   --workers 10 \
   --pair-timeout 300 \
@@ -16,7 +16,7 @@ python compare_greedy_vs_exhaustive_local_exact_8tiles.py \
 
 python compare_existing_exact_hungarian_beam_8tiles.py \
   --packing packing.py \
-  --seed 10 \
+  --seed 4 \
   --density 0.20 \
   --beam-width 4 \
   --row-option-limit 8 \

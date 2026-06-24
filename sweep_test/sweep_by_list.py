@@ -595,7 +595,7 @@ def main():
         base_name = f"sweep_{sweep}"
         filename = base_name + ".json"
         i = 0
-        while os.path.exists(filename):
+        while os.path.exists("./datas/"+filename):
             filename = f"{base_name}_v{i}.json"
             i += 1
 
