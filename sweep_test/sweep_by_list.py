@@ -434,7 +434,7 @@ def _run_one_point(
         b=b,
         mux_size=mux,
         conflict=cval,
-        fairness_match_to_cc_lossy=(sweep in ("c", "conflict")),
+        fairness_match_to_cc_lossy=True#(sweep in ("c", "conflict")),
     )
 
     return {
@@ -498,7 +498,7 @@ def main():
     parser.add_argument("--nm-round", type=str, default="round", choices=["round", "floor", "ceil"])
 
     # parallel over sweep points
-    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--workers", type=int, default=8)
     parser.add_argument(
         "--mp-start",
         type=str,
