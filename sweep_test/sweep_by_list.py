@@ -240,7 +240,7 @@ def _pack_summary(
     # Eureka stats on work_t
     eureka_total_cols = 0
     eureka_total_nnz = 0
-    mux_size_ = mux_size# * 2
+    mux_size_ = mux_size * 2
     en_tiles = (gn2 + s - 1) // s
     em_tiles = (gm2 + b - 1) // b
 
