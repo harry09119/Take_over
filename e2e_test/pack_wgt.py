@@ -296,14 +296,14 @@ def _pack_one_layer(
             colcomb_tiles.append([s, tm])
             compare[1] += tm
 
-    """
+    
     # re-prune (기존 코드 유지)
     pruned_nzs = origin_nzs - colcom_nzs
     general_pt = pk.re_prune(general_t.to(torch.int32), pruned_nzs)
     general_pt = pk.remove_empty(general_pt)
     gn, gm = general_pt.shape
     total_nzs = fast_nnz(general_pt) if verify_nnz else None
-    """
+    
 
     general_pt = general_t
 
